@@ -15,7 +15,6 @@ if (!class_exists('AramarketCustom')) {
 			add_action('wp', [$this, 'checkStatusScheduleDaily']);
 			add_action('easyship_hook_auto_order_status_update', [$this, 'autoCheckAndUpdateOrderStatus']);
 			
-            add_action('template_redirect', array($this, 'check_and_redirect_url'));
         }
 
 		//start update status within portal
@@ -95,27 +94,6 @@ if (!class_exists('AramarketCustom')) {
             }
         }
 		
-        public function check_and_redirect_url() {
-            // Get the current URL
-            $current_url = $_SERVER['REQUEST_URI'];
-
-            // Check if the URL matches the specific pattern
-            if (strpos($current_url, '/cart/?add-to-cart=') !== false) {
-                // Check if 'gla_' is present in the URL
-                if (strpos($current_url, 'gla_') !== false) {
-                    // Remove the 'gla_' part from the URL
-                    $new_url = str_replace('gla_', '', $current_url);
-
-                    // Redirect to the new URL
-                    wp_redirect($new_url);
-                    exit();
-                } else {
-                    // 'gla_' is not present, do nothing
-                }
-            } else {
-                // URL doesn't match the specific pattern, do nothing
-            }
-        }
     }
 }
 // Instantiate the class
