@@ -94,13 +94,14 @@ if (!class_exists('ESShippingPopupTemplate')) {
 						$thumbnail_url = get_the_post_thumbnail_url($product_id, 'thumbnail');
 						$admin_url = admin_url().'post.php?post='.$product_id.'&action=edit';
 						$product_name = ESCommonFunctions::make_string_ellipsis($item->get_name(), 3);
-
+						$product_quantity = $item->get_quantity();
+						
 						echo <<<HTML
 						<div class="es-prodcut-img-title">
 							<a href="$admin_url" target="_blank">
 								<img class="$class" alt="img" src="$thumbnail_url">
 							</a>&nbsp;
-							<a href="$admin_url" target="_blank">$product_name</a>
+							<a href="$admin_url" target="_blank">{$product_quantity}x{$product_name}</a>
 							<br>
 						</div>
 						HTML;
