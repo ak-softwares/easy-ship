@@ -25,46 +25,46 @@ if (!defined('EASYSHIP_DIR')) {
     define('EASYSHIP_DIR', plugin_dir_path(__FILE__)); //return  C:\xampp\htdocs\wp-content\plugins\EasyShip/
 }
 
-//Common
+// Common
 require_once EASYSHIP_DIR . 'common/constants.php';
 require_once EASYSHIP_DIR . 'common/common_function.php';
 require_once EASYSHIP_DIR . 'settings/settings.php';
 require_once EASYSHIP_DIR . 'caurier-api/model/tracking-model.php';
 
-//Caurier API
+// Caurier API
 require_once EASYSHIP_DIR . 'caurier-api/api/shiprocket-api.php';
 require_once EASYSHIP_DIR . 'caurier-api/api/delhivery-api.php';
 require_once EASYSHIP_DIR . 'caurier-api/api/nimbusPost-api.php';
 
 
-//Tracking
+// Tracking
 require_once EASYSHIP_DIR . 'tracking/includes/setting.php';
 require_once EASYSHIP_DIR . 'tracking/includes/tracking-main.php';
 require_once EASYSHIP_DIR . 'tracking/includes/general-function.php';
 require_once EASYSHIP_DIR . 'tracking/includes/add-tracking-detail-postbox.php';
 
-//Shipping
+// Shipping
 require_once EASYSHIP_DIR . 'shipping/includes/general-function.php';
 require_once EASYSHIP_DIR . 'shipping/includes/order-shipping-actions.php';
 require_once EASYSHIP_DIR . 'shipping/assets/template/bulk-rate-list-template.php';
 require_once EASYSHIP_DIR . 'shipping/includes/shipping-main.php';
 
-//Aramarket custom
+// Aramarket custom
 require_once EASYSHIP_DIR . 'aramarket-custom/aramarket-custom.php';
 
 // Initialize the plugin
 function easy_ship_main() {
-    //Setting
+    // Setting
     new EasyShipSetting();
     new ShiprocketSettings();
     new DelhiverySettings();
     new NimbuspostSettings();
 	
-    //Tracking
+    // Tracking
     new ESOrderTracking();
 	new AddTrackingDetailPostbox();
 
-    //Shipping
+    // Shipping
     new ESOrderShippingActions();
     new ESOrderShipping();
 }

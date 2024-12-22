@@ -24,11 +24,12 @@ if ( ! class_exists( 'AddTrackingDetailPostbox' ) ) {
         }
 
 		public function tracking_box_content($post) {
-			$order_id = $post->ID;
+			$order_ID = $post->ID;
 
 			$es_awb_no;
 			$es_courier_name;
-			$get_tracking_details = ESCommonFunctions::get_tracking_details($order_id);
+			$url = ESCommonFunctions::get_tracking_url($order_ID);
+			$get_tracking_details = ESCommonFunctions::get_tracking_details($order_ID);
 			if($get_tracking_details['success']){
 				$tracking_details = $get_tracking_details['result'];
 				$es_awb_no = $tracking_details['es_awb_no'];
@@ -54,7 +55,8 @@ if ( ! class_exists( 'AddTrackingDetailPostbox' ) ) {
 					</datalist>
 				</p>
 				<?php wp_nonce_field('tracking_box_nonce', 'tracking_box_nonce_value'); ?>
-				<p><button type="submit" class="button button-primary" name="tracking_submit"><?php _e('Save'); ?></button></p>
+				<p><button type="submit" class="button button-primary" name="tracking_submit"><?php _e('Save'); ?></button>					  <a href="<?php echo $url; ?>" target="_blank" class="button"><?php _e('Track Now'); ?></a>
+				</p>
 			</div>
 			<?php
 		}

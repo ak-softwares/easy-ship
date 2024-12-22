@@ -126,9 +126,9 @@ if (!class_exists('ESOrderTracking')) {
 		public function getDeliveryStatusCode($status) {
 			$cancelled 		= array("cancelled");
 			$pending_pickup = array("Pickup Generated", "Manifested", "booked", "pending pickup", "Label Generated", "pending-pickup");
-			$in_Transit 	= array("In Transit", "in transit", "Out For Delivery", "out for delivery", "Dispatched", "Pending", "intransit");
-			$delivered 		= array("Delivered", "delivered");
-			$return 		= array("RTO", "return");
+			$in_Transit 	= array("In Transit", "in transit", "Out For Delivery", "out for delivery", "Dispatched", "Pending", "intransit", "In Transit-EN-ROUTE");
+			$delivered 		= array("Delivered", "delivered", "Lost");
+			$return 		= array("RTO", "return", "RTO IN INTRANSIT", "RTO Delivered");
 			
 				 if(in_array($status, $cancelled))		{ return 0; } //for order Cancelled
 			else if(in_array($status, $pending_pickup))	{ return 2; } //for order Pending Pickup
