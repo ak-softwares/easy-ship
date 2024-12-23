@@ -87,11 +87,17 @@ if (!class_exists('ESOrderTracking')) {
 				if(!$response['success']){
 					$error = $response['message'];
 				}
+			} elseif ($es_courier_name == 'dtdc') {
+				$response = array(
+					'success' => true,
+					'message' => 'DTDC match',
+					'result'  => new TrackingModel('NA', 'Shipped', $es_courier_name, 'NA', $es_awb_no, 'https://www.dtdc.in/trace.asp', [])
+				);
 			} elseif (!empty($es_awb_no) && !empty($es_courier_name)) {
 				$response = array(
 					'success' => false,
 					'message' => 'No Caurier Match but awb present',
-					'result'  => new TrackingModel('NA', 'In Transit', $es_courier_name, 'NA', $es_awb_no, '#', [])
+					'result'  => new TrackingModel('NA', 'Shipped', $es_courier_name, 'NA', $es_awb_no, '#', [])
 				);
 			}
 
